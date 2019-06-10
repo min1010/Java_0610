@@ -40,7 +40,7 @@ public class MemberDAO {
 	public int searchByID(Member member) { 
 		int ret = -1; // ret가 0 이상이면 검색 성공, -1 이면 검색 실패
 		int index = 0;
-		for(Member m : memberList) {
+		for(Member m : memberList) { //순차접근이 장점이지만 건너띄어서 접근은 가능하지 못함
 			if(m.getUid().equals(member.getUid())) {
 				ret = index;
 				break;
@@ -54,9 +54,10 @@ public class MemberDAO {
 		int ret = -1;
 		try {
 			int index = searchByID(member);
-			if(index < 0) { // -1이면 검색 실패, 등록 가능함
+			if(index > 0) { // -1이면 검색 실패, 등록 가능함
 				fw = new MemberFileWriter(file);
-				memberList.add(member);
+				memberList.remove(index);     //index 값 없애기
+				//memberList.remove(member); //member 값 없애기
 				fw.saveMember(memberList);
 				ret = 0;
 			}

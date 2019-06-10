@@ -38,12 +38,12 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("/view/RootView.fxml")); // view controls					
 			rootBorderPane = (BorderPane) loader.load();
 			
-			Scene scene = new Scene(rootBorderPane, 400, 600);
+			Scene scene = new Scene(rootBorderPane, 800, 600);
 			scene.getStylesheets().add(Main.class.getResource("/view/member.css").toExternalForm());
 			rootStage.setScene(scene);	
 			rootStage.show();
-			
-			RootViewController controller = loader.getController();
+			//controller : service 이름으로 작성
+			RootViewController controller = loader.getController(); //루트뷰 가져오기
             controller.setMainApp(this);
 			
 		} catch (IOException e) {
